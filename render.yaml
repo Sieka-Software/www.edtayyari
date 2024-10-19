@@ -1,0 +1,11 @@
+services:
+     - type: static
+       name: web.edtayyari
+       buildCommand: "npm run build"
+       publishDirectory: dist
+       routes:
+         - path: /*
+           response:
+             headers:
+               Content-Type: text/html
+             body: $readFile('dist/index.html')
