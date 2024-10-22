@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Routes, Route  } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store';
 import { getHealth } from './store/actions';
 import * as Layout from './components/layout';
@@ -14,12 +15,15 @@ function App() {
   }, [])
 
   return (
-    <div id='scroll-container'>
-      {loading && <Layout.Preloader />}
-      <Layout.PageTransitionBar />
-      {!health && <Error.Error500 />}
-      {health && ((config as any).isUnderMaintenance === "true" ? <Error.Error503 /> : <Main />)}
-    </div>
+    <Routes>
+      <Route path="/*" element={
+        <div id='scroll-container'>
+          {loading && <Layout.Preloader />}
+          <Layout.PageTransitionBar />
+          {!health && <Error.Error500 />}
+          {health && ((config as any).isUnderMaintenance === "true" ? <Error.Error503 /> : <Main />)}
+        </div>} />
+    </Routes>
   )
 }
 

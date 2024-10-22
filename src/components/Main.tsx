@@ -17,7 +17,7 @@ export const Main = () => {
       <AnimatePresence>
         <Suspense fallback={<Layout.Preloader />}>
           <Routes location={location} key={location.pathname}>
-            <Route path='/' element={<Page.HomePage />} />
+            <Route path='/*' element={<Page.HomePage />} />
             <Route path='/about-us/*' element={<Page.AboutPage />} />
             <Route path='/courses/*' element={<Page.CoursesPage />} />
             <Route path='/course/:id' element={<Page.CoursePage />} />

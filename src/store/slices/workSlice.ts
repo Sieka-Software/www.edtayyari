@@ -74,6 +74,9 @@ export const workSlice = createSlice({
         ; (state[parent] as Record<string, any>)[key] = value
       }
     },
+    resetCourse: (state) => {
+      state.course = initialState.course;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllCourses.fulfilled, (state, action: PayloadAction<any>) => {
@@ -124,6 +127,6 @@ export const workSlice = createSlice({
   },
 })
 
-export const { setWorkState, setWorkChildState } = workSlice.actions
+export const { setWorkState, setWorkChildState, resetCourse } = workSlice.actions
 
 export const workReducer = workSlice.reducer
