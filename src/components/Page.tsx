@@ -9,6 +9,7 @@ import { CoursesRoot, CourseDetail } from './courses';
 import { Order } from "./order";
 import { InstructorsRoot } from './instructor';
 import { Contact } from "./contact";
+import * as WorkActions from "../store/slices/workSlice"
 // import { Testimonials } from "./other";
 
 
@@ -89,6 +90,7 @@ export const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
+    dispatch(WorkActions.resetCourse());
     if (id) {
       dispatch(Actions.getCourse(id));
     }
