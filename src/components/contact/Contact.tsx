@@ -73,7 +73,7 @@ export const Contact = () => {
                                             </div>
                                             <div>
                                                 <h6 className='fw-500 mb-12'>Phone Number:</h6>
-                                                <p>+91 9084950475</p>
+                                                <p>+91 8595894937</p>
                                             </div>
                                         </div>
                                         <div className='detail-block mb-24'>
@@ -87,7 +87,7 @@ export const Contact = () => {
                                         </div>
                                         <div className='detail-block mb-24'>
                                             <div className='icon-box'>
-                                                <i className="fa-regular fa-pin text-white" />
+                                                <i className="fa-regular fa-map text-white" />
                                             </div>
                                             <div>
                                                 <h6 className='fw-500 mb-12'>Address:</h6>
@@ -215,7 +215,7 @@ export const Contact = () => {
                 </div>
                 <div className="map pt-80">
                     <div className="map-wrapper">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d443088.05176831636!2d-95.73093531411777!3d29.81736469329602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640b8b4488d8501%3A0xca0d02def365053b!2sHouston%2C%20TX%2C%20USA!5e0!3m2!1sen!2s!4v1716960714220!5m2!1sen!2s" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224357.50123586552!2d77.23701468919643!3d28.5221023514615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x37ffce30c87cc03f!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1729572970134!5m2!1sen!2sin" width={600} height={450} style={{border: 0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                     </div>
                 </div>
             </div>

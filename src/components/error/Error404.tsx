@@ -34,7 +34,7 @@ export const Error404 = () => {
                             <div className='newsletter-heading justify-content-center my-5'>
                                 <div className='text text-center'>
                                     <h6 className='mb-8 medium-black fw-700'>For more Info Contact us at :</h6>
-                                    <p className='medium-gray'>info@edtayyari.com | +91 9084950475</p>
+                                    <p className='medium-gray'>info@edtayyari.com | +91 8595894937</p>
                                 </div>
                             </div>
                             <div className="text-center">

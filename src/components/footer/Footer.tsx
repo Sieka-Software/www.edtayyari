@@ -149,14 +149,14 @@ export const Footer = () => {
               <h6 className='white fw-500 mb-24'>Contact Us</h6>
               <ul className='footer-list list-unstyled mb-32'>
                 <li className='mb-12 d-flex align-items-center gap-12'>
-                  <a href='tel:123456987' className='d-flex align-items-center '>
+                  <a href='tel:8595894937' className='d-flex align-items-center '>
                     <i className='fa-regular fa-phone fa-lg me-2' />
-                    +91 90849507777
+                    +91 8595894937
                   </a>
                 </li>
                 <li className='mb-12'>
                   <a
-                    href='mailto:info@example.com'
+                    href='mailto:info@edtayyari.com'
                     className='d-flex align-items-center'
                   >
                     <i className='fa-regular fa-envelope fa-lg me-2' />

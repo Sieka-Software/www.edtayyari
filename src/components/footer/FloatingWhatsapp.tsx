@@ -4,7 +4,7 @@ import Logo from "../../assets/media/favicon.ico";
 export const FloatingWhatsapp = () => {
     return (
         <FloatingWhatsApp
-            phoneNumber="919999999999"
+            phoneNumber="918595894937"
             accountName="EdTayyari Academia"
             avatar={Logo}
             statusMessage="Online"
