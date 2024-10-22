@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../store'
 import * as Common from '../alert'
@@ -11,7 +10,7 @@ export const CourseDetail = () => {
     const navigate = useNavigate()
     const { config } = useAppSelector((state) => state.master)
     const { course } = useAppSelector((state) => state.work)
-    
+
     return (
         <section className='course-detail-section pt-10 pb-40'>
             <div className='container-fluid'>
