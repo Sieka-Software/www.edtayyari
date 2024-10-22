@@ -298,12 +298,12 @@ export const CourseDetail = () => {
                                             <h6 className='black fw-700'>
                                                 <span className='text-muted'>{course.data?.courseCode.slice(0, 10)}</span>
                                             </h6>
-                                            <h4 className='black fw-700'>
-                                                {course.data?.isLive && <span>
+                                            {course.data?.isLive && <h4 className='black fw-700'>
+                                                <span>
                                                     <del className='text-muted fw-200'>₹ {course.data?.courseMRP}</del> ₹{' '}
                                                     {course.data?.coursePrice}
-                                                </span>}
-                                            </h4>
+                                                </span>
+                                            </h4>}
                                         </div>
                                         {!course.data?.isLive && course.data?.courseStatus === 'expired' && (
                                             <a onClick={() => navigate('/courses')} className='cus-btn-3 w-100'>
@@ -313,7 +313,7 @@ export const CourseDetail = () => {
                                         )}
                                         {!course.data?.isLive && course.data?.courseStatus === 'coming' && (
                                             <a onClick={() => navigate('/courses')} className='cus-btn-3 w-100'>
-                                                <span>Comming Soon.</span>
+                                                <span>Coming Soon.</span>
                                                 <span>Try Another</span>
                                             </a>
                                         )}

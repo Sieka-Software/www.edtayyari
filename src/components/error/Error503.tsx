@@ -85,7 +85,7 @@ export const Error503 = () => {
               <div className='newsletter-heading justify-content-center mb-24'>
                 <div className='text text-center'>
                   <h6 className='mb-8 medium-black fw-700'>For more Info Contact us at<a onClick={maintenanceBypass}>:</a></h6>
-                  <p className='medium-gray'>info@edtayyari.com | +91 9084950475</p>
+                  <p className='medium-gray'>info@edtayyari.com | +91 8595894937</p>
                 </div>
               </div>
             </div>
