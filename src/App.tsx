@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route  } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store';
 import { getHealth } from './store/actions';
 import * as Layout from './components/layout';
@@ -8,7 +8,6 @@ import * as Error from './components/error';
 
 function App() {
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const { loading, health, config } = useAppSelector(state => state.master)
 
   useEffect(() => {
@@ -16,8 +15,8 @@ function App() {
   }, [])
 
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route path='/*' element={
+    <Routes>
+      <Route path="/*" element={
         <div id='scroll-container'>
           {loading && <Layout.Preloader />}
           <Layout.PageTransitionBar />
