@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import config from '../config'
 import * as Reducer from './slices'
 
 export const store = configureStore({
@@ -9,7 +8,7 @@ export const store = configureStore({
         order: Reducer.orderReducer,
         post: Reducer.postReducer
     },
-    devTools: config.NODE_ENV === 'development'
+    devTools: false
 })
 
 export type RootState = ReturnType<typeof store.getState>
