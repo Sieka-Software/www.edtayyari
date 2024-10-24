@@ -9,10 +9,11 @@ import * as Page from './Page';
 
 export const Main = () => {
   const location = useLocation();
-  const { isError } = useAppSelector(state => state.master);
+  const { isError, showAnnouncement } = useAppSelector(state => state.master);
 
   return (
     <>
+      {!isError && showAnnouncement && <Layout.Announcement />}
       {!isError && <Layout.Navbar />}
       <AnimatePresence>
         <Suspense fallback={<Layout.Preloader />}>

@@ -23,11 +23,11 @@ export const OrderSummary = () => {
     }
 
     return (
-        <div className='checkout-sidebar bg-white-bordered br-12'>
-            <div className='title-row title-row-2 mb-16'>
+        <div className='checkout-sidebar bg-white-bordered br-12 mb-5'>
+            <div className='title-row title-row-2 mb-16 p-2'>
                 <h5 className='fw-500 black'>Order Summary</h5>
             </div>
-            <div className='summary-container p-3'>
+            <div className='summary-container p-1'>
                 <div className='img-block bg-light-white w-100'>
                     <img
                         src={course?.coursePhoto ? course?.coursePhoto : CourseImg}

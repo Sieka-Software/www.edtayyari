@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import { useAppSelector } from '../../store'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Logo from "../../assets/media/logo.svg";
+import clsx from 'clsx'
 
 export const Navbar = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const [isMenuExpanded, setIsMenuExpanded] = useState(false)
     const [coursesData, setCoursesData] = useState<any>([])
-    const { config } = useAppSelector(state => state.master);
+    const { config, showAnnouncement } = useAppSelector(state => state.master);
     const { courses } = useAppSelector(state => state.work);
 
     useEffect(() => {
@@ -56,7 +57,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <header className='header'>
+            <header className={clsx('header', showAnnouncement && 'mt-5' )}>
                 <div className='container-fluid'>
                     <nav className='navigation d-flex align-items-center justify-content-between'>
                         <a className='d-flex align-items-center'>
@@ -159,7 +160,7 @@ export const Navbar = () => {
                                     <ul style={{ display: `${isExpanded ? 'block' : 'none'}` }}>
                                         {link.child?.map((childLink: any, childIndex: number) => {
                                             return (
-                                                <li key={childIndex} className='my-2' style={{fontSize:"12px"}}>
+                                                <li key={childIndex} className='my-2' style={{ fontSize: "12px" }}>
                                                     <a
 
                                                         onClick={() => handleClick(childLink.path)}
@@ -181,7 +182,7 @@ export const Navbar = () => {
                         </li>
                         <li>
                             <i className='fa fa-phone-alt' />
-                            <a href='tel:+12345678'>+91 9084950475</a>
+                            <a href='tel:+12345678'>+91 8595894937</a>
                         </li>
                     </ul>
                     <div className='mobile-nav__social'>

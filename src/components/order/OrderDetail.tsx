@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import RazorpayLogo from '../../assets/media/brands/razorpay_logo.png'
 import { useAppSelector, useAppDispatch } from '../../store'
 import * as Actions from '../../store/actions'
@@ -36,6 +36,7 @@ const orderSchema = Yup.object().shape({
 
 export const OrderDetail = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
     const { id } = useParams<{ id: string }>()
     const { Razorpay } = useRazorpay();
     const { orderForm, course, price, razorpayorder } = useAppSelector((state) => state.order);
@@ -88,7 +89,7 @@ export const OrderDetail = () => {
     }, [razorpayorder])
 
     return (
-        <div className='order-wrapper'>
+        <div className='order-wrapper mb-5'>
             <form onSubmit={formik.handleSubmit}>
                 <div className='row'>
                     <div className='col-12 title-row title-row-2 mb-24'>
@@ -181,7 +182,7 @@ export const OrderDetail = () => {
                                     </span>
                                 </label>
                             </div>
-                            <div className="form-text my-2">
+                            <div className="form-text mt-4">
                                 <p><i className='fa-duotone fa-lock me-2' />Your Transaction is Secured with SSL Encryption</p>
                             </div>
 
@@ -205,9 +206,9 @@ export const OrderDetail = () => {
                         <p className='subtitle mb-16'>
                             Your personal data will be used to process your order, support your experience
                             throughout this website, and for other purposes described in our
-                            <span className='color-primary fw-600'> privacy policy.</span>
+                            <span className='color-primary fw-600 ms-1' style={{cursor:"pointer"}} onClick={() => navigate("/privacy-policy")}> Privacy Policy.</span>
                         </p>
-                        <div>
+                        <div className='d-flex my-3 align-items-center'>
                             <input
                                 type='checkbox'
                                 {...formik.getFieldProps('termsChecked')}
@@ -224,7 +225,7 @@ export const OrderDetail = () => {
                         )}
                         <div className='text-end'>'
                             <button type="submit" disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}>
-                                <a className='cus-btn-4' style={{ width: "300px" }}>
+                                <a className='cus-btn-4' style={{ minWidth: "300px" }}>
                                     <span>{orderForm.loading ? <i className="fa-solid fa-loader fa-spin" /> : `Proceed to Pay ₹ ${price?.courseTotal}`}</span>
                                 </a>
                             </button>

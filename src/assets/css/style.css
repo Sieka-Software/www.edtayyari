@@ -1192,6 +1192,17 @@ strong {
   gap: clamp(48px, 3.333vw, 128px);
 }
 
+.transition-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: #D5D52C;
+  z-index: 10000;
+  width: 0;
+  transition: width 0.s ease-out;
+}
+
 .cus-btn {
   position: relative;
   overflow: hidden;
@@ -1421,7 +1432,6 @@ strong {
 
 .cus-btn-4 {
   position: relative;
-  overflow: hidden;
   border: 1px solid #004439;
   color: #FFFFFF;
   display: inline-flex;
@@ -1436,12 +1446,10 @@ strong {
   border-radius: clamp(24px, 1.667vw, 64px);
   cursor: pointer;
   background: #004439;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
 }
 
 .order-wrapper button {
+  align-items: center;
   background: none !important;
   border: none !important;
   color: transparent !important;
@@ -1449,8 +1457,17 @@ strong {
   padding: 0px !important;
 }
 
+.order-wrapper button::after {
+  content: none;
+}
+
+
 .order-wrapper button:disabled .cus-btn-4 {
   border: none;
+  background: #004439b3;
+}
+
+.checkout-box button:disabled .cus-btn-4 {
   background: #004439b3;
 }
 
@@ -2820,6 +2837,20 @@ label.error {
   border: 2px solid #fff;
 }
 
+.announcement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #D5D52C;
+  color: #004439;
+  padding: 10px 20px;
+}
+
+.announcement p {
+  font-size: 15px;
+  text-align: center;
+}
+
 .header {
   position: absolute;
   left: 0;
@@ -2848,6 +2879,10 @@ label.error {
 @media (max-width: 580px) {
   .header {
     padding: 16px 0;
+  }
+
+  .announcement p {
+    font-size: 12px;
   }
 }
 
@@ -3920,16 +3955,6 @@ label.error {
   transition: all 0.3s ease-in-out;
 }
 
-.brand-section .brand-slider {
-  margin: 0 -12px;
-}
-
-@media (max-width: 1024px) {
-  .brand-section .brand-slider {
-    margin: 0;
-  }
-}
-
 .brand-section .brand-block {
   background: #FFFFFF;
   padding: 20px;
@@ -3937,7 +3962,11 @@ label.error {
   border-radius: clamp(4px, 0.417vw, 16px);
   display: flex;
   justify-content: center;
-  margin: 0 12px;
+}
+
+.brand-section .brand-block img {
+  height: 50px;
+  object-fit: contain;
 }
 
 @media (max-width: 490px) {
@@ -3950,7 +3979,7 @@ label.error {
 
 @media (max-width: 490px) {
   .brand-section .brand-block img {
-    width: 80%;
+    height: 40px;
     object-fit: contain;
   }
 }
@@ -6037,9 +6066,6 @@ footer a {
   cursor: pointer;
 }
 
-html {
-  scroll-behavior: auto;
-}
 
 .text-danger-glow {
   color: #ff4141;
@@ -6058,15 +6084,4 @@ html {
   to {
     opacity: 0;
   }
-}
-
-.transition-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  background: #D5D52C;
-  z-index: 10000;
-  width: 0;
-  transition: width 0.s ease-out;
 }

@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-export const InstructorsLoader = () => {
+export const MentorsLoader = () => {
     return (
         <div className='text-center my-5' style={{ marginLeft: "5%" }}>
             <ContentLoader
