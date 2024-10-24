@@ -27,7 +27,7 @@ export const MentorsWorked = () => {
                 <div className="row g-2">
                     {mentorsWorked && mentorsWorked.map((logo, index) => {
                         return (
-                            <div className="col-3 brand-section" key={index}>
+                            <div className="col-md-3 col-6 brand-section" key={index}>
                                 <div className="brand-block">
                                     <img src={logo} alt="" />
                                 </div>
