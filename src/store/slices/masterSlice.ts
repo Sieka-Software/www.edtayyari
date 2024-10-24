@@ -19,6 +19,7 @@ type MasterState = {
   health: boolean,
   isError: boolean,
   isBackToTopVisible: boolean,
+  showAnnouncement: boolean,
   status: {
     type: string | undefined
     code: number | undefined
@@ -33,6 +34,7 @@ const initialState: MasterState = {
   health: false,
   isError: false,
   isBackToTopVisible: false,
+  showAnnouncement: false,
   config: {},
   status: {
     type: undefined,
@@ -74,6 +76,12 @@ export const masterSlice = createSlice({
       state.status = { ...state.status, type: utils.getCodeType(response.status), code: response.status, message: response.message }
       if (response.status === 200) {
         state.config = response.data
+
+        const announcementTill = new Date(response.data.announcementMessageTill);
+        const serverTimestamp = new Date(response.data.serverTimestamp);
+        if(announcementTill > serverTimestamp && response.data.announcementMessage)
+          state.showAnnouncement = true;
+
       } else {
         state.status.data = response.data;
       }

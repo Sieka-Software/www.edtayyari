@@ -9,11 +9,11 @@ export const Order = () => {
         <section className="billing-detail pb-40">
             {courseData.loading && <CourseDetailLoader />}
             <div className="container-fluid">
-                <div className="row row-gap-4">
-                    <div className="col-xxl-8 col-xl-7">
+                <div className="row">
+                    <div className="col-md-8 col-12 order-md-1 order-2">
                         {!courseData.loading && <OrderDetail />}
                     </div>
-                    <div className="col-xxl-4 col-xl-5">
+                    <div className="col-md-4 col-12 order-md-2 order-1">
                         {!courseData.loading && <OrderSummary />}
                     </div>
                 </div>

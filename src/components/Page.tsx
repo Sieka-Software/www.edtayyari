@@ -7,7 +7,7 @@ import * as Home from './home';
 import * as Legal from "./legal";
 import { CoursesRoot, CourseDetail } from './courses';
 import { Order } from "./order";
-import { InstructorsRoot } from './instructor';
+import { MentorsRoot, MentorsWorked } from './mentors'
 import { Contact } from "./contact";
 import * as WorkActions from "../store/slices/workSlice"
 // import { Testimonials } from "./other";
@@ -29,7 +29,8 @@ export const HomePage = () => {
       <Home.Hero />
       <Home.Choose />
       <CoursesRoot />
-      <InstructorsRoot />
+      <MentorsRoot />
+      <MentorsWorked/>
       {/* <Testimonials /> */}
     </>
   )
@@ -40,7 +41,7 @@ export const AboutPage = () => {
     <>
       <Layout.Breadcrum title="About Us" />
       <Home.AboutUs />
-      <InstructorsRoot />
+      <MentorsRoot />
       {/* <Testimonials /> */}
     </>
   )
@@ -79,11 +80,10 @@ export const InstructorsPage = () => {
   return (
     <>
       <Layout.Breadcrum title="Instructors" />
-      <InstructorsRoot />
+      <MentorsRoot />
     </>
   )
 }
-
 
 export const CoursePage = () => {
   const dispatch = Store.useAppDispatch();

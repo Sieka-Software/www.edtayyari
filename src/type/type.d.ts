@@ -49,7 +49,7 @@ type CourseType =  {
     instructorInfo: any;
 }
 
-type InstructorType = {
+type MentorType = {
     _id: mongoose.Types.ObjectId;
     instructorName: string;
     instructorPhoto: string;
