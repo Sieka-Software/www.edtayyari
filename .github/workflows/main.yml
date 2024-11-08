@@ -59,6 +59,8 @@ jobs:
           echo "Moving build to directory: $DIRECTORY_PATH"
           mv dist $DIRECTORY_PATH
         shell: bash
+        env:
+          SUDO: $(which sudo)
 
       - name: Run preview command
         run: |
