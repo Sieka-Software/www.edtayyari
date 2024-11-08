@@ -24,6 +24,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'  # Adjust this to the version used in your VPS
+
+      - name: Check Node.js version
+        run: |
+          node -v
+
+      - name: Check npm version
+        run: |
+          npm -v
+
       - name: Consume Repository Secrets & Variables
         run: |
           echo "Consume Repository Secrets & Variables Started"
@@ -43,15 +56,18 @@ jobs:
           fi
           echo "Consume Repository Secrets & Variables Completed"
 
-      - name: Get paths for Node.js, npm, and mv
-        run: |
-          echo "Getting paths for MV"
-          echo "MV_PATH=$(which mv)" >> $GITHUB_ENV
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
-      - name: Install dependencies
+      - name: Install dependencies with npm ci
         run: |
-          echo "Installing dependencies..."
-          npm install --f
+          echo "Installing dependencies with npm ci..."
+          npm ci
 
       - name: Build the app
         run: |
@@ -61,7 +77,7 @@ jobs:
       - name: Move the build to the specified directory
         run: |
           echo "Moving build to directory: $DIRECTORY_PATH"
-          $MV_PATH dist/* $DIRECTORY_PATH
+          mv dist/* $DIRECTORY_PATH
 
       - name: Run preview command
         run: |
