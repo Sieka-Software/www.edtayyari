@@ -19,8 +19,6 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    env:
-      ENV: ${{ github.event.inputs.environment || 'DEV' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,7 +26,7 @@ jobs:
       - name: Consume Repository Secrets & Variables
         run: |
           echo "Consume Repository Secrets & Variables Started"
-          echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+          echo "ENV=${{ github.event.inputs.environment || 'DEV' }}" >> $GITHUB_ENV
           if [ "$ENV" == "PROD" ]; then
             echo "DIRECTORY_PATH=${{ vars.PROD_DIRECTORY_PATH }}" >> $GITHUB_ENV
             echo "VITE_NODE_ENV=${{ secrets.PROD_VITE_NODE_ENV }}" > .env
