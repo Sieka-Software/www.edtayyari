@@ -51,12 +51,12 @@ jobs:
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
-          npm install
+          npm install --f
 
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
-          npm run build
+          npm run build --f
 
       - name: Move the build to the specified directory
         run: |
