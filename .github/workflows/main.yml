@@ -67,7 +67,7 @@ jobs:
       - name: Install dependencies
         run: |
           echo "Installing dependencies"
-          npm install --legacy-peer-deps
+          npm ci --force
 
       - name: Build the app
         run: |
