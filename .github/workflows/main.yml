@@ -5,7 +5,7 @@ on:
     branches:
       - development
       - workflow
-      
+
   workflow_dispatch:
     inputs:
       environment:
@@ -43,32 +43,33 @@ jobs:
           fi
           echo "Consume Repository Secrets & Variables Completed"
 
+      - name: Get paths for Node.js, npm, and mv
+        run: |
+          echo "Getting paths for Node.js, npm, and mv"
+          echo "NODE_PATH=$(which node)" >> $GITHUB_ENV
+          echo "NPM_PATH=$(which npm)" >> $GITHUB_ENV
+          echo "MV_PATH=$(which mv)" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
-          npm install
-
-      - name: Get paths for Node.js and mv
-        run: |
-          echo "Getting paths for Node.js and mv"
-          echo "NODE_PATH=$(which node)" >> $GITHUB_ENV
-          echo "MV_PATH=$(which mv)" >> $GITHUB_ENV
+          $NPM_PATH install
 
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
-          $NODE_PATH npm run build --force
+          $NPM_PATH run build --force
 
       - name: Move the build to the specified directory
         run: |
           echo "Moving build to directory: $DIRECTORY_PATH"
-          $MV_PATH dist/* $DIRECTORY_PATHa
+          $MV_PATH dist/* $DIRECTORY_PATH
 
       - name: Run preview command
         run: |
           echo "Running preview command in directory: $DIRECTORY_PATH"
           cd $DIRECTORY_PATH
-          npm run preview
+          $NPM_PATH run preview
 
   cleanup:
     runs-on: self-hosted
