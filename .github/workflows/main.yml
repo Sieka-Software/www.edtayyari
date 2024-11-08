@@ -53,10 +53,16 @@ jobs:
           echo "Building app for environment: $ENV"
           npm run build --force
 
+      - name: Get paths for Node.js and mv
+        run: |
+          echo "Getting paths for Node.js and mv"
+          echo "NODE_PATH=$(which node)" >> $GITHUB_ENV
+          echo "MV_PATH=$(which mv)" >> $GITHUB_ENV
+
       - name: Move the build to the specified directory
         run: |
           echo "Moving build to directory: $DIRECTORY_PATH"
-          /usr/bin/bash mv dist/* $DIRECTORY_PATH
+          $MV_PATH dist/* $DIRECTORY_PATHa
 
       - name: Run preview command
         run: |
