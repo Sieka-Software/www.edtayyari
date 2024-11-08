@@ -24,7 +24,13 @@ jobs:
       ENV: ${{ github.event.inputs.environment || 'DEV' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Check sudo path
+        run: |
+          echo "Checking sudo path"
+          which sudo
+        shell: bash
 
       - name: Consume Repository Secrets & Variables
         run: |
@@ -46,23 +52,28 @@ jobs:
           fi
           
           echo "Consume Repository Secrets & Variables Completed"
+          shell: bash
       
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
           npm run build --force
+        shell: bash
 
       - name: Move the build to the specified directory
         run: |
           echo "Moving build to directory: $DIRECTORY_PATH"
           mv dist $DIRECTORY_PATH
+        shell: bash
 
       - name: Run preview command
         run: |
           cd $DIRECTORY_PATH
           npm run preview
+        shell: bash
 
       - name: Clean up build directory
         run: |
           echo "Cleaning up build directory..."
           rm -rf $GITHUB_WORKSPACE/dist
+        shell: bash
