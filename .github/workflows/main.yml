@@ -45,9 +45,7 @@ jobs:
 
       - name: Get paths for Node.js, npm, and mv
         run: |
-          echo "Getting paths for Node.js, npm, and mv"
-          echo "NODE_PATH=$(which node)" >> $GITHUB_ENV
-          echo "NPM_PATH=$(which npm)" >> $GITHUB_ENV
+          echo "Getting paths for MV"
           echo "MV_PATH=$(which mv)" >> $GITHUB_ENV
 
       - name: Install dependencies
