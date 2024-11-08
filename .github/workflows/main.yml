@@ -14,7 +14,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, organization-runner]
+    runs-on: self-hosted
     environment: ${{ github.event.inputs.environment }}
     steps:
       - name: Checkout code
