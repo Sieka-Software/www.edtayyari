@@ -27,7 +27,7 @@ jobs:
       - name: Set up Node.js v20.18.0
         uses: actions/setup-node@v3
         with:
-          node-version: '20.18.0'  # Setting the specific Node.js version you need
+          node-version: '20.18.0'
 
       - name: Check Node.js version
         run: |
@@ -68,6 +68,12 @@ jobs:
         run: |
           echo "Installing dependencies with npm ci..."
           npm ci
+          npm install --save-dev @types/react-dom  # Ensure react-dom types are installed
+
+      - name: TypeScript Compile Check
+        run: |
+          echo "Running TypeScript compile check..."
+          npx tsc --noEmit  # This will check for type errors without generating output files
 
       - name: Build the app
         run: |
