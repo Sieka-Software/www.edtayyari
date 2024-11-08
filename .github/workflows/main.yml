@@ -43,13 +43,13 @@ jobs:
           echo "ENV=${{ github.event.inputs.environment || 'DEV' }}" >> $GITHUB_ENV
           if [ "$ENV" == "PROD" ]; then
             echo "DIRECTORY_PATH=${{ vars.PROD_DIRECTORY_PATH }}" >> $GITHUB_ENV
-            echo "VITE_NODE_ENV=${{ secrets.PROD_VITE_NODE_ENV }}" > .env
+            echo "VITE_NODE_ENV=${{ secrets.PROD_VITE_NODE_ENV }}" >> .env
             echo "VITE_APP_ID=${{ secrets.PROD_VITE_APP_ID }}" >> .env
             echo "VITE_APP_KEY=${{ secrets.PROD_VITE_APP_KEY }}" >> .env
             echo "VITE_API_URL=${{ secrets.PROD_VITE_API_URL }}" >> .env
           else
             echo "DIRECTORY_PATH=${{ vars.DEV_DIRECTORY_PATH }}" >> $GITHUB_ENV
-            echo "VITE_NODE_ENV=${{ secrets.DEV_VITE_NODE_ENV }}" > .env
+            echo "VITE_NODE_ENV=${{ secrets.DEV_VITE_NODE_ENV }}" >> .env
             echo "VITE_APP_ID=${{ secrets.DEV_VITE_APP_ID }}" >> .env
             echo "VITE_APP_KEY=${{ secrets.DEV_VITE_APP_KEY }}" >> .env
             echo "VITE_API_URL=${{ secrets.DEV_VITE_API_URL }}" >> .env
@@ -67,12 +67,12 @@ jobs:
       - name: Install dependencies
         run: |
           echo "Installing dependencies"
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
-          npm run build --f
+          npm run build  # Remove the unnecessary "--f" flag
 
       - name: Move the build to the specified directory
         run: |
