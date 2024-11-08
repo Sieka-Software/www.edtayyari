@@ -58,7 +58,7 @@ jobs:
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
-          $NPM_PATH run build --force
+          $NPM_PATH run build
 
       - name: Move the build to the specified directory
         run: |
