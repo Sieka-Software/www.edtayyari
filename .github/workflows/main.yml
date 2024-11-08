@@ -77,8 +77,8 @@ jobs:
       - name: Move the build to the specified directory
         run: |
           echo "Moving build to directory: $DIRECTORY_PATH"
-          mkdir -p $DIRECTORY_PATH
-          mv dist/* $DIRECTORY_PATH
+          sudo mkdir -p $DIRECTORY_PATH
+          sudo mv dist/* $DIRECTORY_PATH
 
       - name: Run preview command
         run: |
