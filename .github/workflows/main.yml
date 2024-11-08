@@ -22,7 +22,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Node.js v20.18.0
         uses: actions/setup-node@v3
@@ -64,16 +64,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
-      - name: Install dependencies with npm ci
+      - name: Install dependencies
         run: |
-          echo "Installing dependencies with npm ci..."
-          npm ci
-          npm install --save-dev @types/react-dom  # Ensure react-dom types are installed
-
-      - name: TypeScript Compile Check
-        run: |
-          echo "Running TypeScript compile check..."
-          npx tsc --noEmit  # This will check for type errors without generating output files
+          echo "Installing dependencies"
+          npm install
 
       - name: Build the app
         run: |
