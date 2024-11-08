@@ -20,28 +20,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up environment variables dynamically
+      - name: Consume Repository Secrets & Variables
         run: |
+          echo "Consume Repository Secrets & Variables Started"
           echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-          
-          if [ "$ENV" == "DEV" ]; then
-            echo "DIRECTORY_PATH=${{ vars.DEV_DIRECTORY_PATH }}" >> $GITHUB_ENV
-          elif [ "$ENV" == "PROD" ]; then
+ 
+          if [ "$ENV" == "PROD" ]; then
             echo "DIRECTORY_PATH=${{ vars.PROD_DIRECTORY_PATH }}" >> $GITHUB_ENV
+            echo "VITE_NODE_ENV=${{ secrets.PROD_VITE_NODE_ENV }}" > .env
+            echo "VITE_APP_ID=${{ secrets.PROD_VITE_APP_ID }}" >> .env
+            echo "VITE_APP_KEY=${{ secrets.PROD_VITE_APP_KEY }}" >> .env
+            echo "VITE_API_URL=${{ secrets.PROD_VITE_API_URL }}" >> .env
           else
-            echo "Unknown environment selected: $ENV"
-            exit 1
+            echo "DIRECTORY_PATH=${{ vars.DEV_DIRECTORY_PATH }}" >> $GITHUB_ENV
+            echo "VITE_NODE_ENV=${{ secrets.DEV_VITE_NODE_ENV }}" > .env
+            echo "VITE_APP_ID=${{ secrets.DEV_VITE_APP_ID }}" >> .env
+            echo "VITE_APP_KEY=${{ secrets.DEV_VITE_APP_KEY }}" >> .env
+            echo "VITE_API_URL=${{ secrets.DEV_VITE_API_URL }}" >> .env
           fi
-
-          echo "DIRECTORY_PATH set to: $DIRECTORY_PATH"
           
-      - name: Create .env file for the selected environment
-        run: |
-          echo "VITE_NODE_ENV=${{ secrets.VITE_NODE_ENV }}" > .env
-          echo "VITE_APP_ID=${{ secrets.VITE_APP_ID }}" > .env
-          echo "VITE_APP_KEY=${{ secrets.VITE_APP_KEY }}" > .env
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
-
+          echo "Consume Repository Secrets & Variables Completed"
+      
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
