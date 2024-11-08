@@ -24,10 +24,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js v20.18.0
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'  # Adjust this to the version used in your VPS
+          node-version: '20.18.0'  # Setting the specific Node.js version you need
 
       - name: Check Node.js version
         run: |
