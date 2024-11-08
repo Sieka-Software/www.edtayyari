@@ -26,12 +26,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Check sudo path
-        run: |
-          echo "Checking sudo path"
-          which sudo
-        shell: bash
-
       - name: Consume Repository Secrets & Variables
         run: |
           echo "Consume Repository Secrets & Variables Started"
