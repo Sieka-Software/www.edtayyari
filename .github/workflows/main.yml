@@ -53,12 +53,12 @@ jobs:
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
-          $NPM_PATH install
+          npm install --f
 
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
-          $NPM_PATH run build
+          npm run build --f
 
       - name: Move the build to the specified directory
         run: |
@@ -69,7 +69,7 @@ jobs:
         run: |
           echo "Running preview command in directory: $DIRECTORY_PATH"
           cd $DIRECTORY_PATH
-          $NPM_PATH run preview
+          npm run preview
 
   cleanup:
     runs-on: self-hosted
