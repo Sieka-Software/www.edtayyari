@@ -43,6 +43,12 @@ jobs:
           echo "Consume Repository Secrets & Variables Completed"
         shell: bash
 
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies..."
+          npm install
+        shell: bash
+
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
