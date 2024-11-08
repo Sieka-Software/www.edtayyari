@@ -23,7 +23,15 @@ jobs:
       - name: Set up environment variables dynamically
         run: |
           echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-          echo "DIRECTORY_PATH=${{ vars[`${{ ENV }}_DIRECTORY_PATH`] }}" >> $GITHUB_ENV
+          
+          if [ "$ENV" == "DEV" ]; then
+            echo "DIRECTORY_PATH=${{ vars.DEV_DIRECTORY_PATH }}" >> $GITHUB_ENV
+          elif [ "$ENV" == "PROD" ]; then
+            echo "DIRECTORY_PATH=${{ vars.PROD_DIRECTORY_PATH }}" >> $GITHUB_ENV
+          else
+            echo "Unknown environment selected: $ENV"
+            exit 1
+          fi
 
           echo "DIRECTORY_PATH set to: $DIRECTORY_PATH"
           
