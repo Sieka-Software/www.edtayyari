@@ -1,0 +1,58 @@
+name: Deploy React App
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose environment for deployment'
+        required: true
+        default: 'DEV'
+        type: choice
+        options:
+          - DEV
+          - PROD
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up environment variables dynamically
+        run: |
+          echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+
+          if [ "$ENV" != "DEV" and "$ENV" == "PROD" ]; then
+            echo "Unknown environment selected: $ENV"
+            exit 1
+          
+          echo "DIRECTORY_PATH=${{ vars.DIRECTORY_PATH }}" >> $GITHUB_ENV
+          
+      - name: Create .env file for the selected environment
+        run: |
+          echo "VITE_NODE_ENV=${{ secrets.VITE_NODE_ENV }}" > .env
+          echo "VITE_APP_ID=${{ secrets.VITE_APP_ID }}" > .env
+          echo "VITE_APP_KEY=${{ secrets.VITE_APP_KEY }}" > .env
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
+
+      - name: Build the app
+        run: |
+          echo "Building app for environment: $ENV"
+          npm run build --force
+
+      - name: Move the build to the specified directory
+        run: |
+          echo "Moving build to directory: $DIRECTORY_PATH"
+          mv dist $DIRECTORY_PATH
+
+      - name: Run preview command
+        run: |
+          cd $DIRECTORY_PATH
+          npm run preview
+
+      - name: Clean up build directory
+        run: |
+          echo "Cleaning up build directory..."
+          rm -rf $GITHUB_WORKSPACE/dist
