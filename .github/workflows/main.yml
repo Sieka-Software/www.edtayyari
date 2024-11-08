@@ -48,16 +48,16 @@ jobs:
           echo "Installing dependencies..."
           npm install
 
-      - name: Build the app
-        run: |
-          echo "Building app for environment: $ENV"
-          npm run build --force
-
       - name: Get paths for Node.js and mv
         run: |
           echo "Getting paths for Node.js and mv"
           echo "NODE_PATH=$(which node)" >> $GITHUB_ENV
           echo "MV_PATH=$(which mv)" >> $GITHUB_ENV
+
+      - name: Build the app
+        run: |
+          echo "Building app for environment: $ENV"
+          $NODE_PATH npm run build --force
 
       - name: Move the build to the specified directory
         run: |
