@@ -1,6 +1,11 @@
 name: Deploy React App
 
 on:
+  push:
+    branches:
+      - development
+      - workflow
+
   workflow_dispatch:
     inputs:
       environment:
@@ -15,7 +20,8 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    environment: ${{ github.event.inputs.environment }}
+    env:
+      ENV: ${{ github.event.inputs.environment || 'DEV' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
