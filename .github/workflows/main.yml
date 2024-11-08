@@ -5,7 +5,6 @@ on:
     branches:
       - development
       - workflow
-
   workflow_dispatch:
     inputs:
       environment:
@@ -30,7 +29,6 @@ jobs:
         run: |
           echo "Consume Repository Secrets & Variables Started"
           echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
- 
           if [ "$ENV" == "PROD" ]; then
             echo "DIRECTORY_PATH=${{ vars.PROD_DIRECTORY_PATH }}" >> $GITHUB_ENV
             echo "VITE_NODE_ENV=${{ secrets.PROD_VITE_NODE_ENV }}" > .env
@@ -44,10 +42,9 @@ jobs:
             echo "VITE_APP_KEY=${{ secrets.DEV_VITE_APP_KEY }}" >> .env
             echo "VITE_API_URL=${{ secrets.DEV_VITE_API_URL }}" >> .env
           fi
-          
           echo "Consume Repository Secrets & Variables Completed"
-          shell: bash
-      
+        shell: bash
+
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
