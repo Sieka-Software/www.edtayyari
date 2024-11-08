@@ -17,12 +17,16 @@ on:
           - PROD
 
 jobs:
-  deploy:
+  checkout:
     runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+  secrets-and-variables:
+    runs-on: self-hosted
+    needs: checkout
+    steps:
       - name: Consume Repository Secrets & Variables
         run: |
           echo "Consume Repository Secrets & Variables Started"
@@ -43,18 +47,30 @@ jobs:
           echo "Consume Repository Secrets & Variables Completed"
         shell: bash
 
+  install-dependencies:
+    runs-on: self-hosted
+    needs: secrets-and-variables
+    steps:
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
           npm install
         shell: bash
 
+  build:
+    runs-on: self-hosted
+    needs: install-dependencies
+    steps:
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
           npm run build --force
         shell: bash
 
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
       - name: Move the build to the specified directory
         run: |
           echo "Moving build to directory: $DIRECTORY_PATH"
@@ -67,6 +83,10 @@ jobs:
           npm run preview
         shell: bash
 
+  clean-up:
+    runs-on: self-hosted
+    needs: deploy
+    steps:
       - name: Clean up build directory
         run: |
           echo "Cleaning up build directory..."
