@@ -56,7 +56,7 @@ jobs:
       - name: Build the app
         run: |
           echo "Building app for environment: $ENV"
-          npm run build --f
+          npx tsc -b && npx vite build --force
 
       - name: Move the build to the specified directory
         run: |
